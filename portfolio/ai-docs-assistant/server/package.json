@@ -1,0 +1,7 @@
+{
+  "name": "ai-docs-assistant-server",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "node --watch src/index.js", "eval": "node src/eval.js" },
+  "dependencies": { "express": "^4.21.2", "cors": "^2.8.5", "dotenv": "^16.4.5", "pg": "^8.13.0" }
+}

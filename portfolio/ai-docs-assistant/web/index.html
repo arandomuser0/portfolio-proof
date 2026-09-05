@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Docs Assistant</title><script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script></head>
+<body class="bg-zinc-950 text-zinc-100 min-h-[100dvh]">
+<div class="max-w-3xl mx-auto px-5 py-14">
+<h1 class="text-3xl font-bold tracking-tight">Docs assistant</h1>
+<p class="text-zinc-400 mt-2">Ingest docs, ask with citations. No hallucinated contracts.</p>
+<textarea id="q" class="w-full mt-6 rounded-xl bg-zinc-900 border border-zinc-800 p-4" rows="3" placeholder="e.g. How do refunds work?"></textarea>
+<button onclick="ask()" class="mt-3 rounded-full bg-emerald-500 text-zinc-950 font-semibold px-6 py-3">Ask</button>
+<pre id="out" class="mt-6 whitespace-pre-wrap text-sm bg-zinc-900 border border-zinc-800 rounded-xl p-4">—</pre>
+<script>async function ask(){const q=document.getElementById('q').value;const r=await fetch('/api/ask',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:q})});document.getElementById('out').textContent=JSON.stringify(await r.json(),null,2)}</script>
+</div></body></html>
