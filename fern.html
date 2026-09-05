@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fern: calm money for freelancers</title>
+<meta name="description" content="Fern sets aside tax, smooths income and pays you a steady salary. Premium-consumer finance demo for portfolio." />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --accent:#b45309; --accent-deep:#92400e; --accent-tint:#fef3c7; --ink:#14231b; --line:#dce5dd; --bg:#f7faf8; }
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter Tight",system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+  .btn-primary{background:var(--accent);color:#fff;border-radius:999px;font-weight:700;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s}
+  .btn-primary:hover{background:var(--accent-deep)}.btn-primary:active{transform:translateY(1px) scale(.98)}
+  .btn-ghost{border:1px solid var(--line);border-radius:999px;background:#fff;transition:transform .25s,border-color .25s}
+  .btn-ghost:hover{border-color:#9fb3a4}.btn-ghost:active{transform:translateY(1px) scale(.98)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px}
+  .card-green{background:#14231b;color:#f4f7f4;border-color:#14231b;border-radius:16px}
+  .card-amber{background:var(--accent-tint);border:1px solid #fcd34d;border-radius:16px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .input{border-radius:8px;border:1px solid var(--line);background:#fff}
+  .input:focus{outline:2px solid var(--accent);outline-offset:2px}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  details summary::-webkit-details-marker{display:none}
+  details[open] .plus{transform:rotate(45deg)}
+  .plus{transition:transform .3s}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<!-- mock data: fictional users, numbers, quotes for portfolio demo -->
+
+<header class="sticky top-0 z-40 bg-[#f7faf8]/85 backdrop-blur border-b border-[#dce5dd]">
+  <nav class="max-w-7xl mx-auto px-5 h-[68px] flex items-center justify-between gap-6" aria-label="Primary">
+    <a href="#" class="flex items-center gap-2 shrink-0"><span class="w-8 h-8 rounded-full bg-[#14231b] text-amber-300 grid place-items-center"><i class="ph-bold ph-leaf"></i></span><span class="font-bold tracking-tight text-[17px]">Fern</span></a>
+    <div class="hidden lg:flex items-center gap-8 text-[14.5px] font-medium text-[#43564a] whitespace-nowrap">
+      <a href="#how" class="hover:text-[#14231b]">How it works</a><a href="#features" class="hover:text-[#14231b]">Features</a><a href="#pricing" class="hover:text-[#14231b]">Pricing</a><a href="#stories" class="hover:text-[#14231b]">Stories</a><a href="#faq" class="hover:text-[#14231b]">FAQ</a>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="#" class="hidden sm:inline-flex text-[14.5px] font-semibold text-[#43564a] px-3 py-2">Sign in</a>
+      <a href="#cta" class="btn-primary text-[14.5px] px-5 py-2.5">Start free</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO: asymmetric split, photo + salary card -->
+<section class="max-w-7xl mx-auto px-5 pt-16 lg:pt-24 pb-12 grid lg:grid-cols-[1fr_1fr] gap-12 items-center min-h-[calc(100dvh-68px)]">
+  <div>
+    <p class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-800 bg-amber-100 border border-amber-300 rounded-full px-3 py-1.5"><i class="ph-bold ph-sparkle"></i>Tax season ready</p>
+    <h1 class="mt-5 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.02]">Freelance pay, minus the panic</h1>
+    <p class="mt-4 text-base lg:text-lg text-[#43564a] leading-relaxed max-w-[44ch]">Fern holds back tax, smooths slow months and pays you one steady salary.</p>
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a href="#cta" class="btn-primary px-7 py-3.5 text-[15px]">Start free</a>
+      <a href="#how" class="btn-ghost px-7 py-3.5 text-[15px] font-semibold">How Fern works</a>
+    </div>
+    <div class="mt-6 flex items-center gap-3">
+      <div class="flex -space-x-2" aria-hidden="true">
+        <img src="https://picsum.photos/seed/fern-face-1/64/64" alt="" class="w-8 h-8 rounded-full border-2 border-[#f7faf8] object-cover" loading="lazy" />
+        <img src="https://picsum.photos/seed/fern-face-2/64/64" alt="" class="w-8 h-8 rounded-full border-2 border-[#f7faf8] object-cover" loading="lazy" />
+        <img src="https://picsum.photos/seed/fern-face-3/64/64" alt="" class="w-8 h-8 rounded-full border-2 border-[#f7faf8] object-cover" loading="lazy" />
+      </div>
+      <p class="text-[13px] text-[#43564a]"><strong class="text-[#14231b]">12,000 freelancers</strong> paid steadily last month</p>
+    </div>
+  </div>
+  <div class="relative">
+    <img src="https://picsum.photos/seed/fern-studio/900/700" alt="Freelance designer working in a calm sunlit studio" class="rounded-2xl w-full h-[300px] lg:h-[380px] object-cover border border-[#dce5dd]" loading="eager" />
+    <div class="card absolute -bottom-8 left-4 right-4 sm:left-8 sm:right-auto sm:w-[340px] p-5 shadow-[0_24px_50px_-24px_rgba(20,35,27,.35)]">
+      <p class="text-[12px] font-medium text-[#43564a]">October salary · paid Oct 1</p>
+      <p class="mono text-[30px] font-semibold tracking-tight">$4,200.00</p>
+      <div class="mt-3 h-2 rounded-full bg-[#edf2ee] overflow-hidden flex"><span class="bg-[#14231b] w-[62%]"></span><span class="bg-amber-500 w-[23%]"></span><span class="bg-emerald-500 w-[15%]"></span></div>
+      <div class="mono mt-2.5 flex justify-between text-[11px] text-[#43564a]"><span>● You 62%</span><span>● Tax 23%</span><span>● Buffer 15%</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAIN METRICS -->
+<section class="max-w-7xl mx-auto px-5 pt-16 pb-4">
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+    <div><p class="mono text-3xl lg:text-4xl font-semibold tracking-tight">$0</p><p class="text-[13.5px] text-[#43564a] mt-1">surprise tax bills for members</p></div>
+    <div><p class="mono text-3xl lg:text-4xl font-semibold tracking-tight">3.1×</p><p class="text-[13.5px] text-[#43564a] mt-1">smoother monthly income</p></div>
+    <div><p class="mono text-3xl lg:text-4xl font-semibold tracking-tight">11 min</p><p class="text-[13.5px] text-[#43564a] mt-1">median quarterly filing</p></div>
+    <div><p class="mono text-3xl lg:text-4xl font-semibold tracking-tight">4.9★</p><p class="text-[13.5px] text-[#43564a] mt-1">from 6k App Store reviews</p></div>
+  </div>
+</section>
+
+<!-- FEATURES: 2-col card grid, not bento -->
+<section id="features" class="max-w-7xl mx-auto px-5 py-14">
+  <h2 class="text-3xl md:text-[40px] font-extrabold tracking-tighter">Three jobs Fern does quietly</h2>
+  <div class="mt-8 grid md:grid-cols-2 gap-4">
+    <article class="card-green p-8 reveal"><i class="ph-duotone ph-piggy-bank text-amber-300 text-3xl"></i><h3 class="mt-4 text-2xl font-bold tracking-tight">Tax holds itself back</h3><p class="mt-2 text-[#c4d2c7] text-[15px] max-w-[42ch]">Every invoice splits automatically. Federal, state and a buffer land in the right vaults.</p><p class="mono text-amber-300 text-[13px] mt-5">Q3 estimate covered · $3,140 / $3,140</p></article>
+    <article class="card-amber p-8 reveal"><i class="ph-duotone ph-waves text-amber-800 text-3xl"></i><h3 class="mt-4 text-2xl font-bold tracking-tight">Slow months feel normal</h3><p class="mt-2 text-amber-950/70 text-[15px] max-w-[42ch]">Good months top up your buffer. Lean months draw from it. Salary stays flat.</p></article>
+    <article class="card p-8 reveal"><i class="ph-duotone ph-receipt text-[#14231b] text-3xl"></i><h3 class="mt-4 text-2xl font-bold tracking-tight">Invoices that nudge politely</h3><p class="mt-2 text-[#43564a] text-[15px] max-w-[42ch]">Send in seconds. Fern follows up, adds late fees and logs everything for your books.</p></article>
+    <article class="card p-8 reveal"><i class="ph-duotone ph-heart text-[#14231b] text-3xl"></i><h3 class="mt-4 text-2xl font-bold tracking-tight">Time off, funded</h3><p class="mt-2 text-[#43564a] text-[15px] max-w-[42ch]">Skim a little each payout into a break fund. December-you says thanks.</p></article>
+  </div>
+</section>
+
+<!-- HOW: numbered rows -->
+<section id="how" class="border-y border-[#dce5dd] bg-white">
+  <div class="max-w-7xl mx-auto px-5 py-16 grid lg:grid-cols-[.85fr_1.15fr] gap-10">
+    <div><h2 class="text-3xl md:text-[40px] font-extrabold tracking-tighter leading-tight">Set up once, exhale monthly</h2><a href="#cta" class="btn-primary inline-block mt-6 px-6 py-3 text-[14.5px]">Start free</a></div>
+    <ol class="divide-y divide-[#e6ede7] border-t border-b border-[#e6ede7]">
+      <li class="py-5 flex gap-4"><span class="mono font-semibold text-amber-700">01</span><div><p class="font-bold">Tell Fern your rhythm</p><p class="text-[#43564a] text-[14px]">Average income, tax state, payday. Three minutes, no jargon.</p></div></li>
+      <li class="py-5 flex gap-4"><span class="mono font-semibold text-amber-700">02</span><div><p class="font-bold">Route invoices through Fern</p><p class="text-[#43564a] text-[14px]">Clients pay the same way. Splits happen invisibly.</p></div></li>
+      <li class="py-5 flex gap-4"><span class="mono font-semibold text-amber-700">03</span><div><p class="font-bold">Get salary on the 1st</p><p class="text-[#43564a] text-[14px]">Same number monthly, even when clients are late.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- PRICING: horizontal feature compare, different family -->
+<section id="pricing" class="max-w-7xl mx-auto px-5 py-16">
+  <h2 class="text-3xl md:text-[40px] font-extrabold tracking-tighter reveal">One plan that pays for itself</h2>
+  <div class="card mt-8 p-8 lg:p-10 grid lg:grid-cols-[1fr_auto] gap-8 items-center reveal">
+    <div>
+      <p class="mono text-5xl font-semibold tracking-tight">$16<span class="text-lg text-[#43564a] font-medium">/mo</span></p>
+      <p class="text-[14.5px] text-[#43564a] mt-2 max-w-[52ch]">Tax vaults, income smoothing, invoicing and quarterly filings. Free while you earn under $1k/mo.</p>
+      <ul class="mt-5 grid sm:grid-cols-2 gap-2.5 text-[14px] font-medium"><li class="flex gap-2"><i class="ph-bold ph-check text-amber-700 mt-1"></i>Unlimited invoices</li><li class="flex gap-2"><i class="ph-bold ph-check text-amber-700 mt-1"></i>Auto tax splits</li><li class="flex gap-2"><i class="ph-bold ph-check text-amber-700 mt-1"></i>Salary smoothing</li><li class="flex gap-2"><i class="ph-bold ph-check text-amber-700 mt-1"></i>Quarterly filings</li></ul>
+    </div>
+    <a href="#cta" class="btn-primary px-10 py-4 text-[15px] text-center">Start free</a>
+  </div>
+</section>
+
+<!-- STORIES + FAQ -->
+<section id="stories" class="max-w-7xl mx-auto px-5 pb-16 grid lg:grid-cols-2 gap-10">
+  <div>
+    <h2 class="text-3xl font-extrabold tracking-tighter">Freelancers exhale</h2>
+    <figure class="card p-7 mt-6"><blockquote class="text-[17px] leading-snug">“January used to terrify me. Now tax is just already there.”</blockquote><figcaption class="flex items-center gap-3 mt-4"><img src="https://picsum.photos/seed/fern-user-1/80/80" alt="" class="w-10 h-10 rounded-full object-cover" loading="lazy" /><span class="text-[13.5px] text-[#43564a]"><strong class="text-[#14231b]">Sofia R.</strong> · Illustrator, Lisbon</span></figcaption></figure>
+    <figure class="card p-7 mt-4"><blockquote class="text-[17px] leading-snug">“My salary hits the 1st even when agencies pay late.”</blockquote><figcaption class="flex items-center gap-3 mt-4"><img src="https://picsum.photos/seed/fern-user-2/80/80" alt="" class="w-10 h-10 rounded-full object-cover" loading="lazy" /><span class="text-[13.5px] text-[#43564a]"><strong class="text-[#14231b]">Marcus T.</strong> · Videographer, Austin</span></figcaption></figure>
+  </div>
+  <div id="faq">
+    <h2 class="text-3xl font-extrabold tracking-tighter">Questions</h2>
+    <div class="mt-6 divide-y divide-[#e6ede7] border-t border-b border-[#e6ede7]">
+      <details class="py-5 group"><summary class="flex justify-between items-center font-bold cursor-pointer list-none">Is Fern a bank?<span class="plus text-amber-700 text-xl leading-none">+</span></summary><p class="text-[14.5px] text-[#43564a] mt-2 max-w-[52ch]">No. Fern is a money tool that works with partner banks. Deposits are held with program banks up to applicable limits.</p></details>
+      <details class="py-5 group"><summary class="flex justify-between items-center font-bold cursor-pointer list-none">What if a client never pays?<span class="plus text-amber-700 text-xl leading-none">+</span></summary><p class="text-[14.5px] text-[#43564a] mt-2 max-w-[52ch]">Your buffer covers up to one salary cycle while Fern chases, adds fees and keeps records for write-off.</p></details>
+      <details class="py-5 group"><summary class="flex justify-between items-center font-bold cursor-pointer list-none">Can I leave anytime?<span class="plus text-amber-700 text-xl leading-none">+</span></summary><p class="text-[14.5px] text-[#43564a] mt-2 max-w-[52ch]">Yes. Vaults unlock instantly and your history exports as clean CSV for any accountant.</p></details>
+    </div>
+    <div id="cta" class="card-amber p-7 mt-6">
+      <p class="font-extrabold text-lg tracking-tight">Try Fern free this month</p>
+      <form class="mt-4 flex flex-col sm:flex-row gap-2.5" onsubmit="event.preventDefault();this.querySelector('.ok').classList.remove('hidden');">
+        <label class="sr-only" for="fern-email">Email</label>
+        <input id="fern-email" type="email" required placeholder="you@studio.co" class="input flex-1 px-4 py-3 text-[14.5px] placeholder:text-[#8aa092]" />
+        <button class="btn-primary px-7 py-3 text-[14.5px]" type="submit">Start free</button>
+      </form>
+      <p class="ok hidden text-[13.5px] font-semibold text-amber-900 mt-3">Welcome in. Check your inbox to set payday.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-[#dce5dd] bg-white"><div class="max-w-7xl mx-auto px-5 py-8 flex flex-col md:flex-row gap-4 justify-between text-[13px] text-[#43564a]"><span>© 2026 Fern · Portfolio demo</span><span>Made for calm inboxes and paid invoices</span></div></footer>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+</script>
+</body>
+</html>

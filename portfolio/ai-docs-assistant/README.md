@@ -1,4 +1,4 @@
-# AI Docs Assistant — minimal RAG
+# AI Docs Assistant - minimal RAG
 Ask questions over your own docs with citations. Junior AI-integration proof.
 
 **Stack:** Node 22 + Express + pgvector-ready (`pg`) with in-memory fallback + any OpenAI-compatible chat/embeddings API + single-file Tailwind UI. Dockerfile included.
@@ -12,8 +12,8 @@ npm run dev  # :8787, serves ../web + API
 ```
 
 ## Endpoints
-- `POST /api/ingest {id, text, meta?}` — chunks (~800 chars), embeds, upserts
-- `POST /api/ask {question}` — embeds query, cosine top-k (default 4), builds cited prompt, calls chat model, returns `{answer, citations:[{id, score, snippet}]}`
+- `POST /api/ingest {id, text, meta?}` - chunks (~800 chars), embeds, upserts
+- `POST /api/ask {question}` - embeds query, cosine top-k (default 4), builds cited prompt, calls chat model, returns `{answer, citations:[{id, score, snippet}]}`
 - `GET /api/health`
 
 ## What it proves

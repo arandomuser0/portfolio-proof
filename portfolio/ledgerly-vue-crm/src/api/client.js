@@ -18,7 +18,7 @@ api.interceptors.response.use(
     const status = err?.response?.status ?? 0
     if (status === 401) localStorage.removeItem('crm_token')
     const message =
-      err?.response?.data?.message || (status === 0 ? 'Network error — is the API running?' : `Request failed (${status})`)
+      err?.response?.data?.message || (status === 0 ? 'Network error - is the API running?' : `Request failed (${status})`)
     return Promise.reject({ message, status, fields: err?.response?.data?.errors || {}, raw: err })
   }
 )

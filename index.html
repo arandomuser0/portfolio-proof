@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ledgerly: Business banking that balances itself</title>
+<meta name="description" content="Ledgerly is the clean business banking platform for invoicing, cards, payouts and real-time books. Portfolio demo." />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --accent:#047857; /* emerald-700 for AA contrast on white */
+    --accent-strong:#065f46;
+    --accent-tint:#ecfdf5;
+    --ink:#0f172a;
+    --muted:#475569;
+    --line:#e2e8f0;
+    --card-r:16px; /* SHAPE RULE: cards 16px, buttons pill, inputs 8px */
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter Tight",-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+  .btn-primary{background:var(--accent);color:#fff;border-radius:999px;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s}
+  .btn-primary:hover{background:var(--accent-strong)}
+  .btn-primary:active{transform:translateY(1px) scale(.98)}
+  .btn-secondary{border:1px solid var(--line);border-radius:999px;transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s,background .25s}
+  .btn-secondary:hover{border-color:#94a3b8;background:#f8fafc}
+  .btn-secondary:active{transform:translateY(1px) scale(.98)}
+  .card{border:1px solid var(--line);border-radius:var(--card-r);background:#fff}
+  .card-tint{background:var(--accent-tint);border-color:#a7f3d0}
+  .card-dark{background:#0f172a;color:#fff;border-color:#0f172a}
+  .input{border-radius:8px;border:1px solid var(--line)}
+  .input:focus{outline:2px solid var(--accent);outline-offset:2px;border-color:var(--accent)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .tab-btn[aria-selected="true"]{background:#0f172a;color:#fff}
+  .num{font-variant-numeric:tabular-nums}
+  .grid-bg{background-image:linear-gradient(to right,#f1f5f9 1px,transparent 1px),linear-gradient(to bottom,#f1f5f9 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,black 55%,transparent 100%)}
+  .tick{animation:tick 2.4s ease-in-out infinite}
+  @keyframes tick{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .pulse-dot{position:relative}
+  .pulse-dot::after{content:"";position:absolute;inset:-4px;border-radius:999px;border:2px solid #10b981;opacity:.5;animation:ping 2s cubic-bezier(0,0,.2,1) infinite}
+  @keyframes ping{75%,100%{transform:scale(1.8);opacity:0}}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .tick,.pulse-dot::after{animation:none}
+    *{transition-duration:.01ms !important}
+  }
+</style>
+</head>
+<body class="bg-white text-slate-900">
+
+<!-- mock data note for portfolio demo: metrics, logos, quotes are fictional placeholders -->
+
+<!-- NAV: single line, 68px -->
+<header class="sticky top-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
+  <nav class="max-w-7xl mx-auto px-5 h-[68px] flex items-center justify-between gap-6" aria-label="Primary">
+    <a href="#" class="flex items-center gap-2 shrink-0">
+      <span class="w-8 h-8 rounded-[10px] bg-emerald-700 text-white grid place-items-center font-extrabold">L</span>
+      <span class="font-bold tracking-tight text-[17px]">Ledgerly</span>
+    </a>
+    <div class="hidden lg:flex items-center gap-8 text-[14.5px] font-medium text-slate-600 whitespace-nowrap">
+      <a href="#product" class="hover:text-slate-900">Product</a>
+      <a href="#features" class="hover:text-slate-900">Features</a>
+      <a href="#pricing" class="hover:text-slate-900">Pricing</a>
+      <a href="#customers" class="hover:text-slate-900">Customers</a>
+      <a href="#security" class="hover:text-slate-900">Security</a>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <a href="#pricing" class="hidden sm:inline-flex text-[14.5px] font-semibold text-slate-700 hover:text-slate-900 px-3 py-2">Sign in</a>
+      <a href="#cta" class="btn-primary text-[14.5px] font-semibold px-5 py-2.5">Start free</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO: split-screen, fits viewport, pt capped, 4 text elements max -->
+<section class="relative overflow-hidden">
+  <div class="grid-bg absolute inset-0 pointer-events-none" aria-hidden="true"></div>
+  <div class="relative max-w-7xl mx-auto px-5 pt-16 lg:pt-24 pb-12 lg:pb-16 grid lg:grid-cols-[1.02fr_.98fr] gap-12 items-center min-h-[calc(100dvh-68px)]">
+    <div>
+      <p class="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 pulse-dot"></span> New · Instant payouts
+      </p>
+      <h1 class="mt-5 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-[1.02]">Banking that balances itself</h1>
+      <p class="mt-4 text-base lg:text-lg text-slate-600 leading-relaxed max-w-[46ch]">Checking, cards, invoicing and books in one calm place. Built for small teams.</p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a href="#cta" class="btn-primary font-semibold px-7 py-3.5 text-[15px]">Start free</a>
+        <a href="#product" class="btn-secondary font-semibold px-7 py-3.5 text-[15px] text-slate-800">See live demo</a>
+      </div>
+    </div>
+
+    <!-- Real component preview: live mini ledger UI, not a fake screenshot -->
+    <div class="relative">
+      <div class="card shadow-[0_24px_60px_-24px_rgba(4,120,87,.25)] overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-slate-200">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-full bg-slate-900 text-white grid place-items-center text-sm font-bold">Ac</span>
+            <div><p class="font-semibold text-[14px] leading-none">Acme Studio</p><p class="mono text-[11.5px] text-slate-500 mt-1">···· 4821 · USD</p></div>
+          </div>
+          <span class="mono text-[11px] font-medium text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-1">● LIVE</span>
+        </div>
+        <div class="px-5 pt-5 pb-2">
+          <p class="text-[12.5px] font-medium text-slate-500">Available balance</p>
+          <p class="num text-[34px] font-extrabold tracking-tight leading-none mt-1">$84,290.12</p>
+          <p class="mono text-[12px] text-emerald-700 font-medium mt-2">+$12,480 this week · reconciled</p>
+        </div>
+        <div class="px-3 pb-2">
+          <div class="flex gap-2 px-2 py-3">
+            <button class="flex-1 rounded-xl bg-slate-900 text-white text-[13px] font-semibold py-2.5 hover:bg-slate-800 active:scale-[.98] transition"><i class="ph-bold ph-paper-plane-tilt mr-1"></i>Pay</button>
+            <button class="flex-1 rounded-xl border border-slate-200 text-[13px] font-semibold py-2.5 hover:bg-slate-50 active:scale-[.98] transition"><i class="ph-bold ph-receipt mr-1"></i>Invoice</button>
+            <button class="flex-1 rounded-xl border border-slate-200 text-[13px] font-semibold py-2.5 hover:bg-slate-50 active:scale-[.98] transition"><i class="ph-bold ph-plus mr-1"></i>Top up</button>
+          </div>
+          <ul class="divide-y divide-slate-100 text-[13.5px]">
+            <li class="flex items-center gap-3 px-2 py-3"><span class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-700 grid place-items-center"><i class="ph-bold ph-arrow-down-left"></i></span><span class="flex-1"><span class="font-semibold block leading-tight">Stripe payout</span><span class="text-slate-500 text-[12px]">Today · 9:41 AM</span></span><span class="num font-semibold">+$8,200</span></li>
+            <li class="flex items-center gap-3 px-2 py-3"><span class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 grid place-items-center"><i class="ph-bold ph-credit-card"></i></span><span class="flex-1"><span class="font-semibold block leading-tight">Team cards · Figma</span><span class="text-slate-500 text-[12px]">Yesterday</span></span><span class="num font-semibold text-slate-600">−$184</span></li>
+            <li class="flex items-center gap-3 px-2 py-3"><span class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 grid place-items-center"><i class="ph-bold ph-buildings"></i></span><span class="flex-1"><span class="font-semibold block leading-tight">Payroll · Gusto</span><span class="text-slate-500 text-[12px]">Mar 12</span></span><span class="num font-semibold text-slate-600">−$14,900</span></li>
+          </ul>
+        </div>
+        <div class="tick mx-4 mb-4 rounded-xl bg-slate-900 text-white px-4 py-3 flex items-center gap-3 text-[13px]">
+          <i class="ph-fill ph-check-circle text-emerald-400 text-lg"></i><span><strong>Books closed.</strong> February reconciled in 41s.</span>
+        </div>
+      </div>
+      <div class="absolute -z-10 -top-8 -right-8 w-64 h-64 rounded-full bg-emerald-100 blur-3xl" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGO WALL: under hero, logos only -->
+<section class="border-y border-slate-200 bg-slate-50/60" aria-label="Customers">
+  <div class="max-w-7xl mx-auto px-5 py-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-slate-400">
+    <span class="flex items-center gap-2 font-bold text-slate-500"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/></svg>Northwind</span>
+    <span class="flex items-center gap-2 font-bold text-slate-500"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/></svg>Fieldset</span>
+    <span class="flex items-center gap-2 font-bold text-slate-500"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l9 5-9 5-9-5 9-5zm-9 10l9 5 9-5v5l-9 5-9-5v-5z"/></svg>Hexlab</span>
+    <span class="flex items-center gap-2 font-bold text-slate-500"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16v16H4z" opacity=".9"/></svg>Bloomco</span>
+    <span class="flex items-center gap-2 font-bold text-slate-500"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 5a5 5 0 110 10 5 5 0 010-10z"/></svg>Orbital</span>
+    <span class="flex items-center gap-2 font-bold text-slate-500"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 12l9-9 9 9-9 9-9-9z"/></svg>Framework</span>
+  </div>
+</section>
+
+<!-- METRICS: plain numbers, no cards -->
+<section class="max-w-7xl mx-auto px-5 py-14 lg:py-20">
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+    <div><p class="mono num text-3xl lg:text-4xl font-semibold tracking-tight" data-count="4.2" data-prefix="$" data-suffix="B">$4.2B</p><p class="text-[13.5px] text-slate-500 mt-1">Processed annually</p></div>
+    <div><p class="mono num text-3xl lg:text-4xl font-semibold tracking-tight" data-count="28" data-suffix="k">28k</p><p class="text-[13.5px] text-slate-500 mt-1">Businesses on Ledgerly</p></div>
+    <div><p class="mono num text-3xl lg:text-4xl font-semibold tracking-tight">99.99%</p><p class="text-[13.5px] text-slate-500 mt-1">Ledger uptime</p></div>
+    <div><p class="mono num text-3xl lg:text-4xl font-semibold tracking-tight">41s</p><p class="text-[13.5px] text-slate-500 mt-1">Median month-end close</p></div>
+  </div>
+</section>
+
+<!-- BENTO FEATURES: 5 items = 5 cells, varied backgrounds -->
+<section id="features" class="max-w-7xl mx-auto px-5 pb-16 lg:pb-24">
+  <h2 class="text-3xl md:text-[40px] font-extrabold tracking-tighter leading-tight max-w-[22ch] reveal">Everything money touches, in one calm system</h2>
+  <p class="mt-3 text-slate-600 max-w-[58ch] reveal">One account for cash, cards, bills and books. No CSV exports at midnight.</p>
+  <div class="mt-8 grid md:grid-cols-6 gap-4">
+    <article class="card card-dark md:col-span-4 p-7 lg:p-9 overflow-hidden relative reveal">
+      <i class="ph-duotone ph-lightning text-emerald-400 text-3xl"></i>
+      <h3 class="mt-4 text-xl font-bold tracking-tight">Instant payouts, zero waiting</h3>
+      <p class="mt-2 text-slate-300 text-[14.5px] max-w-[44ch]">Send to vendors, contractors and staff in seconds. Same-day ACH and instant card payouts included.</p>
+      <div class="mt-6 flex flex-wrap gap-2 mono text-[12px]"><span class="bg-white/10 rounded-full px-3 py-1.5">ACH · 0.8s</span><span class="bg-white/10 rounded-full px-3 py-1.5">Cards · instant</span><span class="bg-emerald-500/20 text-emerald-300 rounded-full px-3 py-1.5">$0 fee under $10k</span></div>
+    </article>
+    <article class="card card-tint md:col-span-2 p-7 reveal">
+      <i class="ph-duotone ph-credit-card text-emerald-800 text-3xl"></i>
+      <h3 class="mt-4 text-xl font-bold tracking-tight">Smart team cards</h3>
+      <p class="mt-2 text-emerald-950/70 text-[14.5px]">Limits per person, auto receipts, instant freeze.</p>
+      <p class="mono num mt-5 text-4xl font-semibold text-emerald-900">$12.4k</p>
+      <p class="text-[12.5px] text-emerald-900/60">spend controlled this month</p>
+    </article>
+    <article class="card md:col-span-2 p-7 reveal">
+      <i class="ph-duotone ph-receipt text-slate-800 text-3xl"></i>
+      <h3 class="mt-4 text-xl font-bold tracking-tight">Invoicing that chases itself</h3>
+      <p class="mt-2 text-slate-600 text-[14.5px]">Reminders, late fees and reconciliation run on their own.</p>
+    </article>
+    <article class="card md:col-span-2 p-0 overflow-hidden reveal">
+      <img src="https://picsum.photos/seed/ledgerly-finance/800/520" alt="Hands reviewing financial documents up close" class="w-full h-44 object-cover" loading="lazy" />
+      <div class="p-7 pt-5"><h3 class="text-xl font-bold tracking-tight">Books close themselves</h3><p class="mt-2 text-slate-600 text-[14.5px]">Every transaction categorized and matched to the ledger.</p></div>
+    </article>
+    <article class="card md:col-span-2 p-7 bg-slate-50 reveal">
+      <i class="ph-duotone ph-globe-hemisphere-west text-slate-800 text-3xl"></i>
+      <h3 class="mt-4 text-xl font-bold tracking-tight">Global by default</h3>
+      <p class="mt-2 text-slate-600 text-[14.5px]">Hold 20 currencies. Pay out in 40 countries at mid-market.</p>
+      <p class="mono text-[12px] text-slate-500 mt-4">USD · EUR · GBP · +17</p>
+    </article>
+  </div>
+</section>
+
+<!-- PRODUCT DEEP DIVE: full-width interactive tabs (different family) -->
+<section id="product" class="border-y border-slate-200 bg-slate-50/70">
+  <div class="max-w-7xl mx-auto px-5 py-16 lg:py-24 grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-start">
+    <div>
+      <h2 class="text-3xl md:text-[40px] font-extrabold tracking-tighter leading-tight">See cash clearly before you spend it</h2>
+      <p class="mt-3 text-slate-600 max-w-[48ch]">Forecast runway, approve bills and track burn without opening a spreadsheet.</p>
+      <div class="mt-6 flex flex-wrap gap-2" role="tablist" aria-label="Product views">
+        <button class="tab-btn rounded-full border border-slate-200 px-4 py-2 text-[13.5px] font-semibold transition" role="tab" aria-selected="true" data-tab="forecast">Forecast</button>
+        <button class="tab-btn rounded-full border border-slate-200 px-4 py-2 text-[13.5px] font-semibold transition" role="tab" aria-selected="false" data-tab="approvals">Approvals</button>
+        <button class="tab-btn rounded-full border border-slate-200 px-4 py-2 text-[13.5px] font-semibold transition" role="tab" aria-selected="false" data-tab="api">API</button>
+      </div>
+      <ul class="mt-6 space-y-3 text-[14.5px]">
+        <li class="flex gap-2.5"><i class="ph-bold ph-check text-emerald-700 mt-1"></i><span><strong>13-week runway</strong> <span class="text-slate-600">updated from live invoices and payroll.</span></span></li>
+        <li class="flex gap-2.5"><i class="ph-bold ph-check text-emerald-700 mt-1"></i><span><strong>One-tap approvals</strong> <span class="text-slate-600">in Slack or email. Audit trail included.</span></span></li>
+        <li class="flex gap-2.5"><i class="ph-bold ph-check text-emerald-700 mt-1"></i><span><strong>Clean API</strong> <span class="text-slate-600">for payouts, cards and ledger webhooks.</span></span></li>
+      </ul>
+    </div>
+    <div class="card p-6 lg:p-8 shadow-[0_20px_50px_-30px_rgba(15,23,42,.3)]">
+      <div data-panel="forecast" class="min-h-[372px]">
+        <div class="flex items-center justify-between"><p class="font-bold tracking-tight">Runway forecast</p><span class="mono text-[12px] text-slate-500">13 weeks · live</span></div>
+        <svg viewBox="0 0 400 140" class="mt-4 w-full" role="img" aria-label="Cash forecast trending upward"><path d="M0 110 C60 105 90 80 140 78 S230 60 280 42 S360 28 400 20" fill="none" stroke="#047857" stroke-width="3" stroke-linecap="round"/><path d="M0 110 C60 105 90 80 140 78 S230 60 280 42 S360 28 400 20 V140 H0 Z" fill="#ecfdf5"/><circle cx="280" cy="42" r="5" fill="#047857" stroke="#fff" stroke-width="2"/></svg>
+        <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+          <div class="rounded-xl bg-slate-50 border border-slate-200 py-3"><p class="mono num font-semibold">$312k</p><p class="text-[11.5px] text-slate-500">Cash in</p></div>
+          <div class="rounded-xl bg-slate-50 border border-slate-200 py-3"><p class="mono num font-semibold">$198k</p><p class="text-[11.5px] text-slate-500">Cash out</p></div>
+          <div class="rounded-xl bg-emerald-50 border border-emerald-200 py-3"><p class="mono num font-semibold text-emerald-800">+14 mo</p><p class="text-[11.5px] text-emerald-800/70">Runway</p></div>
+        </div>
+      </div>
+      <div data-panel="approvals" class="hidden min-h-[372px]">
+        <p class="font-bold tracking-tight">Pending approvals</p>
+        <ul class="mt-4 space-y-3 text-[14px]">
+          <li class="flex items-center gap-3 rounded-xl border border-slate-200 p-3"><span class="w-9 h-9 rounded-full bg-slate-100 grid place-items-center font-bold text-[13px]">DK</span><span class="flex-1"><strong>Design contract · $4,800</strong><br /><span class="text-slate-500 text-[12.5px]">Due Friday · by Maya</span></span><button class="rounded-full bg-slate-900 text-white text-[12.5px] font-semibold px-4 py-2 approve-btn">Approve</button></li>
+          <li class="flex items-center gap-3 rounded-xl border border-slate-200 p-3"><span class="w-9 h-9 rounded-full bg-slate-100 grid place-items-center font-bold text-[13px]">JT</span><span class="flex-1"><strong>Ads top-up · $2,000</strong><br /><span class="text-slate-500 text-[12.5px]">Meta · by Jonas</span></span><button class="rounded-full bg-slate-900 text-white text-[12.5px] font-semibold px-4 py-2 approve-btn">Approve</button></li>
+        </ul>
+        <p class="approve-msg mono text-[12.5px] text-emerald-700 mt-3 invisible">Approved · logged to audit trail</p>
+      </div>
+      <div data-panel="api" class="hidden min-h-[372px]">
+        <p class="font-bold tracking-tight">Payout in 4 lines</p>
+        <pre class="mono mt-4 text-[12.5px] leading-relaxed bg-slate-900 text-slate-100 rounded-xl p-4 overflow-x-auto"><code>const payout = await ledgerly.payouts.create({
+  to: "acct_contractor_92",
+  amount: 480000, // cents
+  rail: "instant",
+});</code></pre>
+        <p class="mono text-[12px] text-slate-500 mt-3">→ 200 OK in 412ms · id pay_8H21KQ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING: tier cards -->
+<section id="pricing" class="max-w-7xl mx-auto px-5 py-16 lg:py-24">
+  <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-800 reveal">Pricing</p>
+  <h2 class="mt-3 text-3xl md:text-[40px] font-extrabold tracking-tighter reveal">Two plans, no fine print</h2>
+  <div class="mt-8 grid md:grid-cols-3 gap-4 items-stretch">
+    <div class="card p-7 flex flex-col reveal">
+      <p class="font-bold">Starter</p><p class="mono num mt-2 text-4xl font-semibold tracking-tight">$0</p>
+      <p class="text-[13.5px] text-slate-500 mt-1">For solo founders getting paid.</p>
+      <ul class="mt-5 space-y-2.5 text-[14px] text-slate-700 flex-1"><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>Business checking</li><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>10 invoices / mo</li><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>1 team card</li></ul>
+      <a href="#cta" class="btn-secondary mt-6 text-center font-semibold py-3 text-[14.5px]">Start free</a>
+    </div>
+    <div class="card p-7 flex flex-col border-emerald-700 !border-2 shadow-[0_20px_50px_-24px_rgba(4,120,87,.35)] relative reveal">
+      <span class="absolute -top-3 left-7 bg-emerald-700 text-white text-[11.5px] font-bold rounded-full px-3 py-1">MOST POPULAR</span>
+      <p class="font-bold">Growth</p><p class="mono num mt-2 text-4xl font-semibold tracking-tight">$24<span class="text-base font-medium text-slate-500">/mo</span></p>
+      <p class="text-[13.5px] text-slate-500 mt-1">For teams with payroll and pace.</p>
+      <ul class="mt-5 space-y-2.5 text-[14px] text-slate-700 flex-1"><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>Everything in Starter</li><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>Unlimited invoices + cards</li><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>Instant payouts + runway</li><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>Slack approvals</li></ul>
+      <a href="#cta" class="btn-primary mt-6 text-center font-semibold py-3 text-[14.5px]">Start free</a>
+    </div>
+    <div class="card p-7 flex flex-col bg-slate-50 reveal">
+      <p class="font-bold">Scale</p><p class="mono num mt-2 text-4xl font-semibold tracking-tight">Custom</p>
+      <p class="text-[13.5px] text-slate-500 mt-1">For finance teams and platforms.</p>
+      <ul class="mt-5 space-y-2.5 text-[14px] text-slate-700 flex-1"><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>Multi-entity + roles</li><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>Dedicated manager</li><li class="flex gap-2"><i class="ph-bold ph-check text-emerald-700 mt-1"></i>Custom rails + SLA</li></ul>
+      <a href="#cta" class="btn-secondary mt-6 text-center font-semibold py-3 text-[14.5px] bg-white">Start free</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS: quote rows, not cards (avoids repeating card family) -->
+<section id="customers" class="border-y border-slate-200">
+  <div class="max-w-7xl mx-auto px-5 py-16 lg:py-20">
+    <h2 class="text-3xl md:text-[40px] font-extrabold tracking-tighter reveal">Loved by operators</h2>
+    <div class="mt-8 divide-y divide-slate-200 border-t border-b border-slate-200">
+      <figure class="py-7 grid md:grid-cols-[1fr_220px] gap-3 items-baseline reveal">
+        <blockquote class="text-[17px] leading-snug tracking-tight">“We closed February in under a minute. Our accountant asked what changed.”</blockquote>
+        <figcaption class="text-[13.5px] text-slate-500">Maya Chen · Founder, Fieldset</figcaption>
+      </figure>
+      <figure class="py-7 grid md:grid-cols-[1fr_220px] gap-3 items-baseline reveal">
+        <blockquote class="text-[17px] leading-snug tracking-tight">“Cards with limits ended expense chaos. No more chasing receipts.”</blockquote>
+        <figcaption class="text-[13.5px] text-slate-500">Jonas Weber · COO, Hexlab</figcaption>
+      </figure>
+      <figure class="py-7 grid md:grid-cols-[1fr_220px] gap-3 items-baseline reveal">
+        <blockquote class="text-[17px] leading-snug tracking-tight">“Payouts land instantly. Contractors noticed before we did.”</blockquote>
+        <figcaption class="text-[13.5px] text-slate-500">Priya Nair · Finance Lead, Bloomco</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY + CTA -->
+<section id="security" class="max-w-7xl mx-auto px-5 py-16 lg:py-24 grid lg:grid-cols-2 gap-10 items-center">
+  <div class="reveal">
+    <h2 class="text-3xl md:text-[40px] font-extrabold tracking-tighter leading-tight">Bank-grade guardrails, quietly on</h2>
+    <div class="mt-6 grid grid-cols-2 gap-3 text-[13.5px] font-medium">
+      <span class="rounded-xl border border-slate-200 px-4 py-3 flex items-center gap-2"><i class="ph-bold ph-shield-check text-emerald-700"></i>SOC 2 Type II</span>
+      <span class="rounded-xl border border-slate-200 px-4 py-3 flex items-center gap-2"><i class="ph-bold ph-lock-key text-emerald-700"></i>256-bit encryption</span>
+      <span class="rounded-xl border border-slate-200 px-4 py-3 flex items-center gap-2"><i class="ph-bold ph-bank text-emerald-700"></i>FDIC pass-through*</span>
+      <span class="rounded-xl border border-slate-200 px-4 py-3 flex items-center gap-2"><i class="ph-bold ph-fingerprint text-emerald-700"></i>PCI DSS L1</span>
+    </div>
+    <p class="text-[12.5px] text-slate-500 mt-4">*Deposits held with partner banks, up to applicable limits. Demo site for portfolio purposes.</p>
+  </div>
+  <div id="cta" class="card p-7 lg:p-9 shadow-[0_24px_60px_-30px_rgba(15,23,42,.3)] reveal">
+    <h3 class="text-2xl font-extrabold tracking-tight">Open your account in 10 minutes</h3>
+    <p class="text-[14px] text-slate-600 mt-1.5">Free to start. No card required.</p>
+    <form class="mt-6 space-y-3" onsubmit="event.preventDefault();document.getElementById('cta-ok').classList.remove('invisible');">
+      <div><label for="email" class="block text-[13px] font-semibold mb-1.5">Work email</label><input id="email" type="email" required placeholder="you@company.com" class="input w-full px-4 py-3 text-[14.5px] placeholder:text-slate-400" /><p class="text-[12px] text-slate-500 mt-1.5">We will send a secure sign-up link.</p></div>
+      <button class="btn-primary w-full font-semibold py-3.5 text-[15px]" type="submit">Start free</button>
+      <p id="cta-ok" class="invisible rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-[13.5px] font-medium px-4 py-3">Check your inbox. Your secure link is on its way.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="border-t border-slate-200 bg-slate-50/60">
+  <div class="max-w-7xl mx-auto px-5 py-10 flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+    <div class="flex items-center gap-2"><span class="w-7 h-7 rounded-lg bg-emerald-700 text-white grid place-items-center text-[13px] font-extrabold">L</span><span class="font-bold tracking-tight">Ledgerly</span><span class="text-slate-400 text-[13px] ml-2">© 2026 · Portfolio demo</span></div>
+    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-[13.5px] font-medium text-slate-500" aria-label="Footer"><a href="#product" class="hover:text-slate-900">Product</a><a href="#pricing" class="hover:text-slate-900">Pricing</a><a href="#security" class="hover:text-slate-900">Security</a><a href="#" class="hover:text-slate-900">Status</a><a href="#" class="hover:text-slate-900">Contact</a></nav>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal (IntersectionObserver, reduced-motion safe)
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+
+  // Tabs
+  const tabs = document.querySelectorAll('[data-tab]');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.setAttribute('aria-selected', x === t ? 'true' : 'false'));
+    document.querySelectorAll('[data-panel]').forEach(p => p.classList.toggle('hidden', p.dataset.panel !== t.dataset.tab));
+  }));
+
+  // Approve micro-interaction
+  document.querySelectorAll('.approve-btn').forEach(b => b.addEventListener('click', () => {
+    b.textContent = 'Approved'; b.disabled = true; b.classList.add('opacity-60');
+    document.querySelector('.approve-msg').classList.remove('invisible');
+  }));
+
+  // Animated counters
+  const counters = document.querySelectorAll('[data-count]');
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; cio.unobserve(e.target);
+    const el = e.target, end = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+    if (reduce) { el.textContent = pre + end + suf; return; }
+    const t0 = performance.now(), dur = 1200;
+    (function f(t){ const p = Math.min(1,(t-t0)/dur), v = end * (1-Math.pow(1-p,3));
+      el.textContent = pre + (end % 1 ? v.toFixed(1) : Math.round(v)) + suf;
+      if (p < 1) requestAnimationFrame(f); })(t0);
+  }), { threshold: .5 });
+  counters.forEach(c => cio.observe(c));
+</script>
+</body>
+</html>
